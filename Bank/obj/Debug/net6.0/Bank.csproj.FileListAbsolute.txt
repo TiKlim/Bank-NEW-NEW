@@ -1,0 +1,15 @@
+C:\Users\prdb\Klim\Bank\bin\Debug\net6.0\Bank.exe
+C:\Users\prdb\Klim\Bank\bin\Debug\net6.0\Bank.deps.json
+C:\Users\prdb\Klim\Bank\bin\Debug\net6.0\Bank.runtimeconfig.json
+C:\Users\prdb\Klim\Bank\bin\Debug\net6.0\Bank.dll
+C:\Users\prdb\Klim\Bank\bin\Debug\net6.0\Bank.pdb
+C:\Users\prdb\Klim\Bank\obj\Debug\net6.0\Bank.csproj.AssemblyReference.cache
+C:\Users\prdb\Klim\Bank\obj\Debug\net6.0\Bank.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\prdb\Klim\Bank\obj\Debug\net6.0\Bank.AssemblyInfoInputs.cache
+C:\Users\prdb\Klim\Bank\obj\Debug\net6.0\Bank.AssemblyInfo.cs
+C:\Users\prdb\Klim\Bank\obj\Debug\net6.0\Bank.csproj.CoreCompileInputs.cache
+C:\Users\prdb\Klim\Bank\obj\Debug\net6.0\Bank.dll
+C:\Users\prdb\Klim\Bank\obj\Debug\net6.0\refint\Bank.dll
+C:\Users\prdb\Klim\Bank\obj\Debug\net6.0\Bank.pdb
+C:\Users\prdb\Klim\Bank\obj\Debug\net6.0\Bank.genruntimeconfig.cache
+C:\Users\prdb\Klim\Bank\obj\Debug\net6.0\ref\Bank.dll
