@@ -1,20 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Bank
 {
+    /*public class Banky
+    { 
+        public int Nomchet { get; set; }
+        public string Fio { get; set; }
+        public float Sum { get; set; }
+    }*/
     internal class SchetInBank
     {
         private int nomchet; //Номер счёта
         private string? fio; //ФИО владельца счёта
         private float sum; //Сумма на счету
         public int Nomchet { get { return nomchet; } }
-        public float Sum { get { return sum; }  set { sum = value; }}
-       
+        public float Sum { get { return sum; } set { sum = value; } }
+
         public SchetInBank() { Info(); Out(); }
+
+        static SchetInBank you;
+        static SchetInBank recipient; 
 
         public void Info()
         {
@@ -147,23 +157,22 @@ namespace Bank
              Otk();
              Out();
         }
-        public void Perenos(float perenos) // Совершаем перевод денег между двумя счетами
+        public void Perenos(SchetInBank recipient) // Совершаем перевод денег между двумя счетами
         {
-            SchetInBank recipient = new SchetInBank();
-            Console.WriteLine("Введите номер счёта получателя.");
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            int schets = Convert.ToInt32(Console.ReadLine());
-            Console.ForegroundColor = ConsoleColor.White;
-            if (perenos <= sum) // sumPerevod - деньги для перевода
+            Console.WriteLine($"\nВведите сумму которую желаете перевести на другой счет?");
+            float perenos = float.Parse(Console.ReadLine());
+            if (perenos <= sum) //Деньги для перевода
             {
-                sum -= perenos; // отнимаем от общ.
+                sum -= perenos; //Отнимаем от общ.
                 recipient.sum += perenos;
                 Console.WriteLine($"На счет: {recipient.nomchet} было переведено: {perenos} рублей");
             }
             else
             {
-                Console.WriteLine("Недостаточно средств на счете.");
+                Console.WriteLine("Недостаточно средств на счёте.");
             }
-        }      
+            
+            }       
+    }      
     }
-}
+
