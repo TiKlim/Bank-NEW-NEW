@@ -26,59 +26,58 @@ namespace Bank
                 {
                     foreach (SchetInBank b in schet)
                     {
-                        Console.WriteLine("Введите номер счёта: ");
+                        Console.WriteLine("> Введите номер счёта: ");
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         int s = Convert.ToInt32(Console.ReadLine());
                         Console.ForegroundColor = ConsoleColor.White;
                         if (s == b.Nomchet)
                         {
                             bank = b;
-                            Console.WriteLine("Вы всегда можете переводить деньги на иные счета! Хотите осуществить такую операцию? (Да, Нет) ");
+                            bank.Otk();
+                            Console.WriteLine("> Меню операций Вашего счёта: 1 - Добавить деньги на счёт; 2 - Снять деньги со счёта; 3 - Закрыть счёт; 4 - Перевод средств; 5 - Меню счетов.");
                             Console.ForegroundColor = ConsoleColor.Cyan;
-                            string? f = Console.ReadLine();
+                            string? vybor = Console.ReadLine();
                             Console.ForegroundColor = ConsoleColor.White;
-                            if (f == "Да")
-                            {
-                                foreach (SchetInBank c in schet)
+                                switch (vybor)
                                 {
-                                    Console.WriteLine("Введите номер счёта отправителя: ");
-                                    Console.ForegroundColor = ConsoleColor.Cyan;
-                                    int g = Convert.ToInt32(Console.ReadLine());
-                                    Console.ForegroundColor = ConsoleColor.White;
-                                    if (g == c.Nomchet)
-                                    {
-                                        bank = c;
-                                        bank.Otk();
-
-
-                                        foreach (SchetInBank d in schet)
-                                        {
-                                            Console.WriteLine("Введите номер счёта получателя: ");
-                                            Console.ForegroundColor = ConsoleColor.Cyan;
-                                            int v = Convert.ToInt32(Console.ReadLine());
-                                            Console.ForegroundColor = ConsoleColor.White;
-                                            if (v == d.Nomchet)
-                                            {
-                                                recipient = d;
-                                                bank.Perenos(recipient);
-                                            }
-
-                                        }
+                                    case "1":
+                                        bank.Out(vybor);
                                         break;
-                                    }
+                                    case "2":
+                                        bank.Out(vybor);
+                                        break;
+                                    case "3":
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("> Счёт закрыт.");
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        break;
+                                    case "4":
+                                                foreach (SchetInBank d in schet)
+                                                {
+                                                    Console.WriteLine("> Введите номер счёта получателя: ");
+                                                    Console.ForegroundColor = ConsoleColor.Cyan;
+                                                    int v = Convert.ToInt32(Console.ReadLine());
+                                                    Console.ForegroundColor = ConsoleColor.White;
+                                                    if (v == d.Nomchet)
+                                                    {
+                                                        recipient = d;
+                                                        bank.Perenos(recipient);
+                                                    }
+                                                }
+                                    break; 
+                                      
+                                    case "5":
+                                        Console.WriteLine();
+                                        break;
                                 }
-                                break;
-                            }
-                            if (f == "Нет")
-                            {
-                                bank.Otk();
-                                bank.Out();
-                            }
                         }
+                        
                     }
                 }
             }
         }
     }
 }
+
+
 

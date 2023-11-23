@@ -14,9 +14,11 @@ namespace Bank
         private float sum; //Сумма на счету
         private float perenos;
         private int nom;
+        //private string[] args;
         public int Nomchet { get { return nomchet; } }
         public float Sum { get { return sum; } set { sum = value; } }
-        public SchetInBank() { Info(); Out(); }
+        public SchetInBank recipient { get; set; }
+        public SchetInBank() { Info(); }
 
         public void Info()
         {
@@ -50,12 +52,8 @@ namespace Bank
             }
             Otk();
         }
-        public void Out()
+        public void Out(string? vybor)
         {
-            Console.WriteLine("> Меню операций Вашего счёта: 1 - Добавить деньги на счёт; 2 - Снять деньги со счёта; 3 - Закрыть счёт; 4 - Меню счетов.");
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            string? vybor = Console.ReadLine();
-            Console.ForegroundColor = ConsoleColor.White;
             switch (vybor)
             {
                 case "1":
@@ -70,6 +68,9 @@ namespace Bank
                     Console.ForegroundColor = ConsoleColor.White;
                     break;
                 case "4":
+                    Perenos(recipient);
+                    break;
+                case "5":
                     Console.WriteLine();
                     break;
             }
@@ -98,7 +99,7 @@ namespace Bank
             }
             sum += dob;
             Otk();
-            Out();
+            //Out();
         }
         private void Umen() //Снять со счёта
         {
@@ -130,15 +131,13 @@ namespace Bank
                 Obnul();
             }
             Otk();
-            Out();
         }
         private void Obnul() //Взять всю сумму
         {
             sum = 0;
             Otk();
-            Out();
         }
-        public void Perenos(SchetInBank recipient) // Совершаем перевод денег между двумя счетами
+        public void Perenos(SchetInBank recipient) //Совершаем перевод денег между двумя счетами
         {
             Console.WriteLine($"\nВведите сумму, которую желаете перевести на другой счет: ");
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -147,9 +146,8 @@ namespace Bank
             if (perenos <= sum) //Деньги для перевода
                 {
                     sum -= perenos; //Отнимаем от общего
-                    recipient.sum += perenos;
+                recipient.sum += perenos;
                     Console.WriteLine($"На счет: {recipient.nomchet} было переведено: {perenos} рублей");
-                    Out();
                 }
                 else
                 {
@@ -159,7 +157,7 @@ namespace Bank
                 Perenos(recipient);
                 }
             
-            }
         }
     }
+}
 
