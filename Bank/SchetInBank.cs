@@ -7,39 +7,31 @@ using System.Threading.Tasks;
 
 namespace Bank
 {
-    /*public class Banky
-    { 
-        public int Nomchet { get; set; }
-        public string Fio { get; set; }
-        public float Sum { get; set; }
-    }*/
     internal class SchetInBank
     {
         private int nomchet; //Номер счёта
         private string? fio; //ФИО владельца счёта
         private float sum; //Сумма на счету
+        private float perenos;
+        private int nom;
         public int Nomchet { get { return nomchet; } }
         public float Sum { get { return sum; } set { sum = value; } }
-
         public SchetInBank() { Info(); Out(); }
-
-        static SchetInBank you;
-        static SchetInBank recipient; 
 
         public void Info()
         {
             Console.WriteLine("Здравствуйте. Пожалуйста введите информацию по текущему счёту. \n(Номер счёта, Фамилия, Сумма на текщем счёте):");
             Console.WriteLine("Номер счёта: ");
             Console.ForegroundColor = ConsoleColor.Cyan;
-             nomchet = Convert.ToInt32(Console.ReadLine());
+            nomchet = Convert.ToInt32(Console.ReadLine());
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Ваша фамилия: ");
             Console.ForegroundColor = ConsoleColor.Cyan;
-             fio = Console.ReadLine();
+            fio = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Сумма на текущем счёте: ");
             Console.ForegroundColor = ConsoleColor.Cyan;
-             sum = float.Parse(Console.ReadLine());
+            sum = float.Parse(Console.ReadLine());
             Console.ForegroundColor = ConsoleColor.White;
 
             if (nomchet < 0) //Проверка ввода номера счёта
@@ -56,15 +48,7 @@ namespace Bank
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.Read();
             }
-             Otk();
-            /*Console.WriteLine("x-----------------------------");
-            Console.WriteLine($"|Информация по текущему счёту: \n|Номер счёта: {nomchet}; \n|Фамилия: {fio}; \n|Сумма на счету: {sum}.");
-            Console.WriteLine("x-----------------------------");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("> Счёт открыт.");
-            Console.ForegroundColor = ConsoleColor.White;*/
-
-            
+            Otk();
         }
         public void Out()
         {
@@ -75,10 +59,10 @@ namespace Bank
             switch (vybor)
             {
                 case "1":
-                     Dob();
+                    Dob();
                     break;
                 case "2":
-                     Umen();
+                    Umen();
                     break;
                 case "3":
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -86,10 +70,7 @@ namespace Bank
                     Console.ForegroundColor = ConsoleColor.White;
                     break;
                 case "4":
-                    Console.WriteLine("");
-                    break;
-                case "5":
-                    Console.WriteLine("");
+                    Console.WriteLine();
                     break;
             }
         }
@@ -142,37 +123,43 @@ namespace Bank
                 Console.WriteLine("! ОШИБКА !");
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.WriteLine();
-                 Otk();
+                Otk();
             }
             else if (umen == sum)
             {
-                 Obnul();
+                Obnul();
             }
-             Otk();
-             Out();
+            Otk();
+            Out();
         }
         private void Obnul() //Взять всю сумму
         {
             sum = 0;
-             Otk();
-             Out();
+            Otk();
+            Out();
         }
         public void Perenos(SchetInBank recipient) // Совершаем перевод денег между двумя счетами
         {
-            Console.WriteLine($"\nВведите сумму которую желаете перевести на другой счет?");
+            Console.WriteLine($"\nВведите сумму, которую желаете перевести на другой счет: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
             float perenos = float.Parse(Console.ReadLine());
+            Console.ForegroundColor = ConsoleColor.White;
             if (perenos <= sum) //Деньги для перевода
-            {
-                sum -= perenos; //Отнимаем от общ.
-                recipient.sum += perenos;
-                Console.WriteLine($"На счет: {recipient.nomchet} было переведено: {perenos} рублей");
-            }
-            else
-            {
+                {
+                    sum -= perenos; //Отнимаем от общего
+                    recipient.sum += perenos;
+                    Console.WriteLine($"На счет: {recipient.nomchet} было переведено: {perenos} рублей");
+                    Out();
+                }
+                else
+                {
+                Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine("Недостаточно средств на счёте.");
-            }
+                Console.BackgroundColor = ConsoleColor.Black;
+                Perenos(recipient);
+                }
             
-            }       
-    }      
+            }
+        }
     }
 
